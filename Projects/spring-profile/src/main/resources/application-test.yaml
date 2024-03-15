@@ -1,0 +1,10 @@
+server:
+  port: 8084
+spring:
+  banner:
+    location: banner-production-test.txt
+
+
+
+
+

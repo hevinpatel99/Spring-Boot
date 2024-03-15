@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+spring:
+  banner:
+    location: banner-production.txt
+  profiles:
+    active: @spring.profiles.active@
+
+  messages:
+    basename:  ${spring.profiles.active} profile is loaded.

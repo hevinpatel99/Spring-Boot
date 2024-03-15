@@ -1,0 +1,39 @@
+server:
+  port: 8085
+
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 546795492751-bjvbddbpm29utm7906h1p2eg7ihs7p3o.apps.googleusercontent.com
+            clientSecret: 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
+          github:
+            clientId: 3d5edfff95b9b85d2341
+            clientSecret: 38734f7cc880fb7931203969eb08e862b976f3cc
+          facebook:
+            client-id: 1066816621290435
+            client-secret: a5d60990e022d4761dca4b382401043d
+
+
+
+
+
+#  security:
+#    oauth2:
+#      client:
+#        provider:
+#          azure:
+#            issuer-uri: https://login.microsoftonline.com/f8cdef31-a31e-4b4a-93e4-5f571e91255a/v2.0
+#        registration:
+#          azure-dev:
+#            provider: azure
+#            client-id: 89a2ca8c-0785-4790-94ac-6b9bf337bae4
+#            client-secret: e8c87bb4-9f09-403e-ab44-5c0513bcd149
+#            scope:
+#              - openid
+#              - email
+
+

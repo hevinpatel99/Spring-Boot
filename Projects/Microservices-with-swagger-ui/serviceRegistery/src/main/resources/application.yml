@@ -1,0 +1,16 @@
+# port
+server:
+  port: 8080
+
+# Eureka hostname
+eureka:
+  instance:
+    hostname: localhost
+
+  client:
+    # the client is not using Eureka for service discovery.
+    fetch-registry: false
+    # the client will not register itself with the Eureka server.
+    register-with-eureka: false
+
+

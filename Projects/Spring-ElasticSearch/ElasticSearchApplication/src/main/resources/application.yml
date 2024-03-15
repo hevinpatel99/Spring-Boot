@@ -1,0 +1,55 @@
+server:
+  port: 8081
+
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27019/movie_details_elastic
+      auto-index-creation: true
+
+  main:
+    allow-bean-definition-overriding: true
+
+
+
+
+  redis:
+    host: localhost
+    port: 6379
+#    database: 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#  elasticsearch:
+#    uris: "localhost:9200"
+#    repositories:
+#      enabled: true
+
+
+
+
+

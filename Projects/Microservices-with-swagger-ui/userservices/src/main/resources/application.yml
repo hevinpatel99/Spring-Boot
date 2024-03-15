@@ -1,0 +1,144 @@
+server:
+  port: 8081
+
+
+######### Mysql Config ########
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3307/micro_service_user_service?createDatabaseIfNotExist=true&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # jpa properties
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  application:
+    name: user-service
+
+  config:
+    import: optional:configserver:http://localhost:8085
+
+
+
+  # Resource Server configuration
+
+  # Resource server JWT Configuration:
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          #Specifies the URI of the issuer which is responsible for providing the JWT (JSON Web Token). In this case, it's Okta's issuer URI.
+#          issuer-uri: https://dev-13638743.okta.com/oauth2/default
+#      # Client registration
+#      client:
+#        registration:
+#          # client registered with the authorization server (Okta)
+#          my-internal-client:
+#            # provide Okta client
+#            provider: okta
+#            authorization-grant-type: client_credentials
+#            #Specifies the scope of access requested by this client. Here, it's limited to "internal".
+#            scope: internal
+#            # This is the client ID provided by Okta
+#            client-id: 0oafd8s9296PSv6sw5d7
+#            # This is the client secret provided by Okta
+#            client-secret: EXWQO3DD3cZVFEorlCwCf4SD7W-LQTTZ2IZas0Y-izfsrNXf3Kaydo6ULNEukBU4
+#
+#        provider:
+#          okta:
+#            issuer-uri: https://dev-13638743.okta.com/oauth2/default
+
+
+
+
+
+
+########## LOGGING ########
+
+Logging:
+  level:
+    root: info
+
+
+# Eureka Client Configuration
+
+#eureka:
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:8080/eureka
+#
+#
+#  instance:
+#    hostname: localhost
+#    prefer-ip-address: true
+
+
+# enable circuit breakers
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      ratingRestaurantBreaker:
+        register-health-indicator: true
+        event-consumer-buffer-size: 10
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 6s
+        permitted-number-of-calls-in-half-open-state: 3
+        sliding-window-size: 10
+        sliding-window-type: count_based
+
+  retry:
+    instances:
+      ratingRestaurantBreaker:
+        max-attempts: 3
+        wait-duration: 5s
+
+  ratelimiter:
+    instances:
+      userRateLimiter:
+        limit-refresh-period: 4s
+        limit-for-period: 2
+        timeout-duration: 0s
+
+# Okta configuration
+#okta:
+#  oauth2:
+#    issuer: https://dev-13638743.okta.com/oauth2/default
+#    audience: api://default
+#
+
+
+
+# Swagger config
+
+
+
+
+
+
+
+
+
+

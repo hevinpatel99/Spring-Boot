@@ -1,0 +1,31 @@
+
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.10.103:3307/spring_batch_3?createDatabaseIfNotExist=true&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # jpa properties
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+
+
+#----------Spring Batch Properties----------
+# By default it's true which means all the Spring batches will start executing automatically
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+  # Tables for metadata created by Spring Boot (Always, Embedded, Never)
+
+

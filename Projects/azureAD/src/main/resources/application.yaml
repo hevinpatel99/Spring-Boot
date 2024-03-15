@@ -1,0 +1,27 @@
+server:
+  port: 8086
+
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          azure:
+            issuer-uri: https://login.microsoftonline.com/f8cdef31-a31e-4b4a-93e4-5f571e91255a/v2.0
+        registration:
+          azure-dev:
+            provider: azure
+            client-id: 89a2ca8c-0785-4790-94ac-6b9bf337bae4
+            client-secret: e8c87bb4-9f09-403e-ab44-5c0513bcd149
+            scope:
+              - openid
+              - email
+  banner:
+    location: banner-production.txt
+
+
+
+
+
+
+

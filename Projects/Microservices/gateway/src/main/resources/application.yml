@@ -1,0 +1,56 @@
+server:
+  port: 8084
+
+# Register Eureka client
+
+spring:
+  application:
+    name: api-gateway
+  config:
+    import: optional:configserver:http://localhost:8085
+
+
+# Register services iN gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user/**
+
+        - id: organization-service
+          uri: lb://ORGANIZATION-SERVICE
+          predicates:
+            - Path=/restaurant/**
+
+        - id: rating-service
+          uri: lb://RATING-SERVICE
+          predicates:
+            - Path=/rating/**
+#  main:
+#    allow-bean-definition-overriding: true
+#    web-application-type: reactive
+
+# Okta configuration
+okta:
+  oauth2:
+    issuer: https://dev-13638743.okta.com/oauth2/default
+    audience: api://default
+    client-id: 0oafd8s9296PSv6sw5d7
+    client-secret: EXWQO3DD3cZVFEorlCwCf4SD7W-LQTTZ2IZas0Y-izfsrNXf3Kaydo6ULNEukBU4
+    scopes: openid,profile,email,offline_access
+
+# Eureka Client Configuration
+
+#eureka:
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:8080/eureka
+#
+#
+#  instance:
+#    hostname: localhost
+#    prefer-ip-address: true
